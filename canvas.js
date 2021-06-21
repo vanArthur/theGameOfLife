@@ -200,8 +200,8 @@ function togglePencil() {
     pencilToggle = 2
   } else {
     pencilToggle = 0
-    gliderSpawning = true;
-    clearPreviewMap()
+    gliderSpawning = false;
+    pencil()
   }
 }
 
