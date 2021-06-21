@@ -36,13 +36,13 @@ function pdraw() {
 
 function gliderPreview(way) {
   clearPreviewMap()
-  if(way == "SW") {
-    previewMap[3][3] = 1;
-    previewMap[4][2] = 1;
-    previewMap[5][2] = 1;
+  if(way == "NW") {
+    previewMap[3][4] = 1;
+    previewMap[4][3] = 1;
     previewMap[5][3] = 1;
     previewMap[5][4] = 1;
-  } else if (way == "NW") {
+    previewMap[5][5] = 1;
+  } else if (way == "SW") {
     previewMap[3][3] = 1;
     previewMap[3][4] = 1;
     previewMap[3][5] = 1;
