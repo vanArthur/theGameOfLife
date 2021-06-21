@@ -118,6 +118,7 @@ function update() {
 }
 
 function startLoop() {
+  if (fps > 60) {fps = 60}
   if (gameLoop !== null) {
     return
   }
@@ -265,5 +266,6 @@ function changeRes() {
 function changeFPS() {
   stopLoop()
   fps = document.getElementById("fpsSlider").value
+  if (fps > 60) {fps = 60}
   startLoop()
 }
