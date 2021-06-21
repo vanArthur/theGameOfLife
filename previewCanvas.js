@@ -16,7 +16,7 @@ function previewSetup() {
       previewMap[i].push(0);
     }
   }
-  pdraw();
+  pencil();
 }
 
 function pdraw() {
