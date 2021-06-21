@@ -88,6 +88,7 @@ function draw() {
       };
     };
   }
+  span2.innerText = 'generation: ' + gen;
 }
 
 function loop() {
@@ -114,7 +115,6 @@ function update() {
   }
   draw();
   gen += 1;
-  span2.innerText = 'generation: ' + gen;
 }
 
 function startLoop() {
