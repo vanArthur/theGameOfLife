@@ -1,0 +1,84 @@
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<title>Learning The Canvas</title>
+
+<body>
+	<div class="hud">
+		<p id="fps">fps: 0</p>
+		<p id="gen">generation: 0</p>
+	</div>
+	<div id="buttons">
+		<input  id="resSlider" type="range" min="5" max="50" value="15" onchange="changeRes()">
+		<button onclick="startLoop()">Start</button>
+		<button onclick="stopLoop()">Stop</button>
+		<button onclick="update()">Next</button>
+		<button onclick="clearMap()">Clear</button>
+		<button onclick="gameMapRandomise()">Randomize</button>
+	</div>
+	<div class="previewGrid">
+		<button onclick="togglePencil()">Pencil</button>
+		<canvas id="previewCanvas" width="80" height="80"></canvas>
+	</div>
+	<div class="canvascontainer">
+		<canvas id="canvas"></canvas>
+	</div>
+
+</body>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		height: 100%;
+		overflow: hidden
+	}
+
+	.canvascontainer {
+		display: grid;
+		justify-items: center;
+	}
+
+	#buttons {
+		position: fixed;
+   	top:5;
+   	right:5;
+	}
+
+	#fps, #gen {
+		color: rgba(0, 255, 8);
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 30px;
+	}
+	.hud {
+    position: fixed;
+    display: grid;
+    grid-template-rows: 25px;
+    top: -20;
+    left: 10;
+	}
+	.previewGrid {
+		position: fixed;
+		bottom: 20;
+		right: 20;
+		display: grid;
+		width: 80;
+	}
+
+	.hidden {
+		display: none;
+	}
+	#previewCanvas {
+		border: 1px solid #fff;
+		transform: translate(0px, 5px);
+	}
+
+</style>
+
+<script src="Cell.js"></script>
+<script src="shapes.js"></script>
+<script src="previewCanvas.js"></script>
+<script src="canvas.js"></script>
+
+
+</html>
