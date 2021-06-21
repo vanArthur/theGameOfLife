@@ -68,6 +68,7 @@ function gameMapRandomise() {
       gamemap[i].push(new Cell(Math.round(Math.random())));
     }
   }
+  gen = 0
   draw()
 }
 
@@ -145,6 +146,7 @@ function getMousePosition(canvas, event) {
       gamemap[x][y].setState(1)
     } else {gliderSpawner(y,x)}
 	}
+  gen = 0;
   draw()
 }
 
@@ -165,6 +167,7 @@ function clearMap() {
       gamemap[i][j].setState(0)
     }
   }
+  gen = 0;
   draw()
 }
 
@@ -187,6 +190,7 @@ function gliderSpawner(x, y) {
     gamemap[y-1][x].setState(1)
     gamemap[y-1][x+1].setState(1)
   }
+  gen = 0
 }
 
 let pencilToggle = 0
