@@ -10,6 +10,7 @@
 		<p id="gen">generation: 0</p>
 	</div>
 	<div id="buttons">
+		<input  id="fpsSlider" type="range" min="1" max="80" value="30" onchange="changeFPS()">
 		<input  id="resSlider" type="range" min="5" max="50" value="15" onchange="changeRes()">
 		<button onclick="startLoop()">Start</button>
 		<button onclick="stopLoop()">Stop</button>

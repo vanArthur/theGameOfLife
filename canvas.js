@@ -8,7 +8,7 @@ let gameLoop = null;
 let gen = 1;
 let gliderSpawning = false;
 const grid = false;
-const fps = 30;
+let fps = 30;
 let span;
 let span2;
 var rtime;
@@ -260,4 +260,10 @@ function windowChange() {
 function changeRes() {
   res = document.getElementById("resSlider").value
   windowChange()
+}
+
+function changeFPS() {
+  stopLoop()
+  fps = document.getElementById("fpsSlider").value
+  startLoop()
 }
