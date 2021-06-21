@@ -53,7 +53,8 @@ function gliderPreview(way) {
 }
 function pencil() {
   clearPreviewMap()
-  previewMap[5][5] = 1;
+  previewMap[4][4] = 1;
+  pdraw();
 }
 
 function clearPreviewMap() {
