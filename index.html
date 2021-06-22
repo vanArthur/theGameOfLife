@@ -12,15 +12,15 @@
 	<div id="buttons">
 		<input  id="fpsSlider" type="range" min="1" max="60" value="30" onchange="changeFPS()">
 		<input  id="resSlider" type="range" min="5" max="50" value="15" onchange="changeRes()">
-		<button onclick="startLoop()">Start</button>
-		<button onclick="stopLoop()">Stop</button>
-		<button onclick="update()">Next</button>
-		<button onclick="clearMap()">Clear</button>
-		<button onclick="gameMapRandomise()">Randomize</button>
-		<button onclick="window.open('https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life', '_blank').focus();">Info</button>
+		<button class="button" onclick="startLoop()">Start</button>
+		<button class="button" onclick="stopLoop()">Stop</button>
+		<button class="button" onclick="update()">Next</button>
+		<button class="button" onclick="clearMap()">Clear</button>
+		<button class="button" onclick="gameMapRandomise()">Randomize</button>
+		<button class="button" onclick="window.open('https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life', '_blank').focus();">Info</button>
 	</div>
 	<div class="previewGrid">
-		<button onclick="togglePencil()">Pencil</button>
+		<button class="button" onclick="togglePencil()">Pencil</button>
 		<canvas id="previewCanvas" width="90" height="90"></canvas>
 	</div>
 	<div class="canvascontainer">
@@ -74,6 +74,10 @@
 	#previewCanvas {
 		border: 1px solid #fff;
 		transform: translate(0px, 5px);
+	}
+	.button {
+		font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
 	}
 
 </style>
