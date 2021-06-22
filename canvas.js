@@ -3,7 +3,7 @@ let canvas;
 let moving = false;
 let ctx;
 let last;
-let res = 20;
+let res = 15;
 let gameLoop = null;
 let gen = 1;
 let gliderSpawning = false;
@@ -242,12 +242,12 @@ function windowChange() {
     for (let i = 0; i < hasToAddH; i++) {
       if (i % 2 === 0){
         gamemap.push([])
-        for (let j = 0; j < gamemap[0].length; j++) {
+        for (let j = 0; j < gamemap[1].length; j++) {
           gamemap[gamemap.length - 1].push(new Cell(0))
         }
       } else {
         gamemap.unshift([])
-        for (let j = 0; j < gamemap[0].length; j++) {
+        for (let j = 0; j < gamemap[1].length; j++) {
           gamemap[0].push(new Cell(0))
         }
       }
