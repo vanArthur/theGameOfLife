@@ -20,17 +20,18 @@ window.addEventListener('resize', function(event) {
   stopLoop()
   rtime = new Date();
   if (timeout === false) {
-      timeout = true;
-      setTimeout(resizeend, delta);
+    timeout = true;
+    setTimeout(resizeend, delta);
   }
 }, true);
+
 function resizeend() {
-    if (new Date() - rtime < delta) {
-        setTimeout(resizeend, delta);
-    } else {
-        timeout = false;
-        windowChange()
-    }
+  if (new Date() - rtime < delta) {
+    setTimeout(resizeend, delta);
+  } else {
+    timeout = false;
+    windowChange()
+  }
 }
 
 function setup() {
@@ -39,10 +40,12 @@ function setup() {
   span2 = document.getElementById('gen');
 
   canvas.addEventListener("mousemove", function(e) {
-    if (moving) {getMousePosition(canvas, e)};
+    if (moving) {
+      getMousePosition(canvas, e)
+    };
   }, false);
   canvas.addEventListener("mousedown", function(e) {
-  	getMousePosition(canvas, e);
+    getMousePosition(canvas, e);
     moving = true;
   }, false);
   canvas.addEventListener("mouseup", function(e) {
@@ -81,7 +84,7 @@ function draw() {
         if (gamemap[j][i].state == 1) {
           Rect(ctx, i * res, j * res, res, res, gamemap[j][i].color, false);
         } else {
-          if(grid) {
+          if (grid) {
             Rect(ctx, i * res, j * res, res, res, "(0, 0, 0, 0.7)", true);
           }
         };
@@ -125,6 +128,7 @@ function startLoop() {
   gameLoop = setInterval(function() {
     loop();
   }, 1000 / fps)
+  //requestAnimationFrame(loop)
 }
 
 function stopLoop() {
@@ -141,21 +145,25 @@ function getMousePosition(canvas, event) {
   if (!moving) {
     if (!gliderSpawning) {
       gamemap[x][y].changeState()
-    } else {gliderSpawner(y,x)}
+    } else {
+      gliderSpawner(y, x)
+    }
   } else {
     if (!gliderSpawning) {
       gamemap[x][y].setState(1)
-    } else {gliderSpawner(y,x)}
-	}
+    } else {
+      gliderSpawner(y, x)
+    }
+  }
   gen = 0;
   draw()
 }
 
 function countNeighbors(x, y) {
   let sum = 0;
-  for(let i = -1; i<=1; i++) {
-    for(let j = -1;j<=1; j++) {
-      sum += gamemap[x+i][y+j].state
+  for (let i = -1; i <= 1; i++) {
+    for (let j = -1; j <= 1; j++) {
+      sum += gamemap[x + i][y + j].state
     }
   }
   sum -= gamemap[x][y].state
@@ -173,34 +181,35 @@ function clearMap() {
 }
 
 function gliderSpawner(x, y) {
-  if(x == 0 || x == gamemap[0].length || y == 0 || y == gamemap.length) {
+  if (x == 0 || x == gamemap[0].length || y == 0 || y == gamemap.length) {
     return
   }
-  if(pencilToggle == 1) {
+  if (pencilToggle == 1) {
     gamemap[y][x].setState(0)
-    gamemap[y-1][x].setState(1)
-    gamemap[y][x-1].setState(1)
-    gamemap[y+1][x-1].setState(1)
-    gamemap[y+1][x].setState(1)
-    gamemap[y+1][x+1].setState(1)
-  } else if(pencilToggle == 2) {
+    gamemap[y - 1][x].setState(1)
+    gamemap[y][x - 1].setState(1)
+    gamemap[y + 1][x - 1].setState(1)
+    gamemap[y + 1][x].setState(1)
+    gamemap[y + 1][x + 1].setState(1)
+  } else if (pencilToggle == 2) {
     gamemap[y][x].setState(0)
-    gamemap[y+1][x].setState(1)
-    gamemap[y][x+1].setState(1)
-    gamemap[y-1][x-1].setState(1)
-    gamemap[y-1][x].setState(1)
-    gamemap[y-1][x+1].setState(1)
+    gamemap[y + 1][x].setState(1)
+    gamemap[y][x + 1].setState(1)
+    gamemap[y - 1][x - 1].setState(1)
+    gamemap[y - 1][x].setState(1)
+    gamemap[y - 1][x + 1].setState(1)
   }
   gen = 0
 }
 
 let pencilToggle = 0
+
 function togglePencil() {
   if (pencilToggle == 0) {
     gliderSpawning = true;
     gliderPreview("NW")
     pencilToggle = 1
-  } else if(pencilToggle == 1) {
+  } else if (pencilToggle == 1) {
     gliderPreview("SW")
     pencilToggle = 2
   } else {
@@ -218,42 +227,57 @@ function windowChange() {
   const hasToRemoveW = Math.floor(gamemap[0].length - curw / res);
   const hasToRemoveH = Math.floor(gamemap.length - curh / res);
 
-	if (hasToAddW > 0) {
-		for(let i = 0; i<gamemap.length; i++) {
-			for(let j = 0; j<hasToAddW; j++) {
-				if(j % 2 === 0 ) {
+  if (hasToAddW > 0) {
+    for (let i = 0; i < gamemap.length; i++) {
+      for (let j = 0; j < hasToAddW; j++) {
+        if (j % 2 === 0) {
           gamemap[i].push(new Cell(0))
         } else {
           gamemap[i].unshift(new Cell(0))
         }
-			}
-		}
-	}
+      }
+    }
+  }
   if (hasToAddH > 0) {
-    for(let i = 0; i<hasToAddH; i++) {
-			gamemap.push([])
-			for(let j = 0; j<gamemap[0].length; j++) {
-				gamemap[gamemap.length - 1].push(new Cell(0))
-			}
-		}
+    for (let i = 0; i < hasToAddH; i++) {
+      if (i % 2 === 0){
+        gamemap.push([])
+        for (let j = 0; j < gamemap[0].length; j++) {
+          gamemap[gamemap.length - 1].push(new Cell(0))
+        }
+      } else {
+        gamemap.unshift([])
+        for (let j = 0; j < gamemap[0].length; j++) {
+          gamemap[0].push(new Cell(0))
+        }
+      }
+    }
   }
   if (hasToRemoveW > 0) {
     console.log("smaller width")
-		for(let i = 0; i<gamemap.length; i++) {
-			for(let j = 0; j<hasToRemoveW; j++) {
-        gamemap[i].pop()
-			}
-		}
-	}
+    for (let i = 0; i < gamemap.length; i++) {
+      for (let j = 0; j < hasToRemoveW; j++) {
+        if (j % 2 === 0) {
+          gamemap[i].pop()
+        } else {
+          gamemap[i].shift()
+        }
+      }
+    }
+  }
   if (hasToRemoveH > 0) {
     console.log("smaller height")
-    for(let i = 0; i<hasToRemoveH; i++) {
-			gamemap.pop()
-		}
+    for (let i = 0; i < hasToRemoveH; i++) {
+      if (i % 2 === 0) {
+        gamemap.pop()
+      } else {
+        gamemap.shift()
+      }
+    }
   }
   ctx.canvas.width = window.innerWidth;
   ctx.canvas.height = window.innerHeight;
-	draw()
+  draw()
   startLoop()
 }
 
@@ -266,6 +290,8 @@ function changeRes() {
 function changeFPS() {
   stopLoop()
   fps = document.getElementById("fpsSlider").value
-  if (fps > 60) {fps = 60}
+  if (fps > 60) {
+    fps = 60
+  }
   startLoop()
 }
